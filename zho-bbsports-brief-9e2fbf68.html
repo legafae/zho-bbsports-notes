@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bb体育 · 信息卡片介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* ===== 深色头图 hero ===== */
+        .hero {
+            background: linear-gradient(135deg, #0b1120, #1a2639);
+            color: #eef2f6;
+            padding: 5rem 1.5rem 4.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #f5f7fa;
+            clip-path: ellipse(70% 100% at 50% 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: #facc15;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto 0.5rem;
+            font-size: 1.15rem;
+            opacity: 0.85;
+            font-weight: 350;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(250, 204, 21, 0.15);
+            color: #fde68a;
+            padding: 0.25rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(250, 204, 21, 0.25);
+        }
+
+        /* ===== 浅色正文区 ===== */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* 子标题 */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            color: #111827;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+        }
+
+        .section-sub {
+            color: #4b5563;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* ===== 用途卡片 ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #edf2f7;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .card .emoji {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #0b1120;
+        }
+
+        .card p {
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        /* ===== 适合人群 ===== */
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 2rem 2rem 2.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #e5e9f0;
+            margin: 1.5rem 0 2.5rem;
+        }
+
+        .audience-list li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: #1f2937;
+            width: calc(50% - 1rem);
+        }
+
+        .audience-list li::before {
+            content: "▹";
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* ===== 自然链接段落 ===== */
+        .link-paragraph {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0 2rem;
+            border: 1px solid #e2e8f0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .link-paragraph a {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, background 0.2s;
+            padding: 0 0.15rem;
+        }
+
+        .link-paragraph a:hover {
+            border-bottom-color: #2563eb;
+            background: #eef2ff;
+        }
+
+        .link-paragraph .highlight-box {
+            background: #f0f4ff;
+            border-radius: 14px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1.2rem;
+            border-left: 5px solid #2563eb;
+        }
+
+        /* ===== FAQ 摘要 / 提示 ===== */
+        .faq-tip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .tip-item {
+            background: white;
+            border-radius: 18px;
+            padding: 1.5rem;
+            border: 1px solid #e9edf4;
+        }
+
+        .tip-item strong {
+            color: #0b1120;
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tip-item p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 3.5rem 1.2rem 3rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .audience-list li {
+                width: 100%;
+            }
+
+            .faq-tip {
+                grid-template-columns: 1fr;
+            }
+
+            .link-paragraph {
+                padding: 1.5rem;
+            }
+
+            .card-grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <section class="hero">
+        <h1><span>bb</span>体育 · 信息速览</h1>
+        <p>聚合运动数据与赛事动态，帮助用户快速识别平台定位与使用方式。</p>
+        <span class="tagline">⚡ 数据导向 · 场景卡片 · 清晰入口</span>
+    </section>
+
+    <!-- 浅色正文区 -->
+    <div class="content">
+
+        <!-- 介绍段落（用途展开） -->
+        <h2 class="section-title">平台用途速览</h2>
+        <p class="section-sub">从用户实际需求出发，梳理 bb体育 的核心使用场景。</p>
+
+        <!-- 用途卡片 -->
+        <div class="card-grid">
+            <div class="card">
+                <span class="emoji">📊</span>
+                <h3>赛事信息聚合</h3>
+                <p>覆盖主流联赛与杯赛的实时比分、赛程预告、历史交锋等基础数据模块，便于快速查阅。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">📈</span>
+                <h3>趋势与统计</h3>
+                <p>提供球队近期战绩、进球分布、攻防效率等统计维度，辅助用户完成初步判断。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">🔍</span>
+                <h3>快速检索入口</h3>
+                <p>通过直观的导航和筛选逻辑，帮助不同经验层次的使用者定位自己关注的赛事或数据。</p>
+            </div>
+        </div>
+
+        <!-- 自然链接段落（嵌入指定链接） -->
+        <div class="link-paragraph">
+            <p>对多数活跃用户来说，一个能同时提供比赛日历、即时比分和基础统计的平台可以节省大量跨页面搜索的时间。如果你希望进一步了解这一信息聚合方式，可以直接前往 <a href="https://zho-bbsports.com">bb体育</a> 查看其当前的数据布局与功能模块。</p>
+            <div class="highlight-box">
+                💡 提示：平台内容以体育数据展示为主，不涉及任何形式的投注或博彩引导，请根据自身需求合理使用。
+            </div>
+        </div>
+
+        <!-- 适合人群（差异化列表） -->
+        <h2 class="section-title" style="margin-top: 1.5rem;">适合哪些用户？</h2>
+        <ul class="audience-list">
+            <li>日常关注五大联赛及主流杯赛的球迷</li>
+            <li>希望快速获取赛程与基础统计的业余分析师</li>
+            <li>对数据趋势感兴趣的体育资讯读者</li>
+            <li>需要整合多个来源信息、提高检索效率的普通用户</li>
+        </ul>
+
+        <!-- FAQ 摘要 / 提示卡片（两栏） -->
+        <h2 class="section-title" style="margin-top: 1.5rem;">常见关注点摘要</h2>
+        <div class="faq-tip">
+            <div class="tip-item">
+                <strong>🔹 数据更新频率？</strong>
+                <p>平台采用自动化数据接口，核心赛事比分与统计在常规比赛日保持较高更新频次，具体以页面实际展示为准。</p>
+            </div>
+            <div class="tip-item">
+                <strong>🔹 是否覆盖非主流联赛？</strong>
+                <p>主要聚焦于关注度较高的联赛与洲际赛事，部分低级别或地区性联赛的数据可能有限，建议先查阅目标赛事是否在列表中。</p>
+            </div>
+            <div class="tip-item">
+                <strong>🔹 移动端浏览体验</strong>
+                <p>页面采用自适应布局，在手机与平板上同样可以查看基本数据，但部分统计图表建议在宽屏下获得更好效果。</p>
+            </div>
+            <div class="tip-item">
+                <strong>🔹 是否需要注册？</strong>
+                <p>当前大多数数据浏览功能无需登录即可使用，但部分个性化设置或历史记录功能可能需要注册账号。</p>
+            </div>
+        </div>
+
+        <!-- 结尾自然引导（再次嵌入链接，但句子不同） -->
+        <div style="background: white; border-radius: 20px; padding: 1.8rem 2rem; margin: 2rem 0 0; border: 1px solid #e9edf4; text-align: left;">
+            <p style="font-size: 1rem; color: #1f2937;">
+                如果你希望直接查看当前平台所涵盖的联赛列表与数据样式，可以进入 <a href="https://zho-bbsports.com" style="color: #2563eb; font-weight: 500; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s;">bb体育</a> 了解其具体的信息架构。页面内容会根据赛季进程有所调整，建议以实际展示为准。
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
